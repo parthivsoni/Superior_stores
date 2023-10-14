@@ -1,36 +1,30 @@
 ﻿<?php
 	session_start();
 	
-	if(isset($_SESSION['admin_email']))
+	if(!isset($_SESSION['Admin_email']))
 	{
-		echo "<script>window.open('index.php?not_admin=You are not an Admin!','_self')</script>";
+		echo "<script>window.open('login.php?not_admin=You are not an Admin!','_self')</script>";
 	}
 	else
 	{
 ?>
 
-<?php
-include ('includes/db.php');
-?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
-    <meta charset="utf-8" />
+      <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>This is a Admin Panel</title>
-    <!-- Bootstrap Styles-->
+    <title>Order Details</title>
+	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <!-- FontAwesome Styles-->
+     <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    <!-- Morris Chart Styles-->
-    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-    <!-- Custom Styles-->
+        <!-- Custom Styles-->
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
-    <!-- Google Fonts-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+     <!-- Google Fonts-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+  
 </head>
-
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default top-navbar" role="navigation">
@@ -57,6 +51,7 @@ include ('includes/db.php');
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
+
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -69,7 +64,7 @@ include ('includes/db.php');
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a class="active-menu" href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a>
+                        <a href="index.php"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
                             <a href="#"><i class="fa fa-tags"></i> Manage Category<span class="fa arrow"></span></a>
@@ -114,7 +109,7 @@ include ('includes/db.php');
                         <a href="#"><i class="fa fa-shopping-cart"></i> Manage Order<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
                             <li>
-                                <a href="order_details.php">Manage Order Details</a>
+                                <a class="active-menu" href="order_details.php">Manage Order Details</a>
 							</li>
                             <li>
                                 <a href="order_status.php">Manage Order Status</a>
@@ -122,21 +117,19 @@ include ('includes/db.php');
                   		</ul>
                     </li>
                     
-                   <!-- <li>
+                    <!--<li>
                         <a href="invoice.php"><i class="fa fa-envelope"></i> Manage Invoice</a>
                     </li>
 					
                     <li>
                         <a href="view_payments.php"><i class="fa fa-credit-card"></i> Manage Payment Details</a>
-                    </li>-->
-					
+                    </li>-->					
 					<!-- <li>
                         <a href="#"><i class="fa fa-flag"></i> Report Generation<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
+		  <ul class="nav nav-second-level">
                             <li>
                                 <a href="Product_Report.php">Product Report</a>
                             </li>
-                           
                             <li>
                                 <a href="Customer_Report.php">Customer Report</a>
                             </li>
@@ -151,135 +144,124 @@ include ('includes/db.php');
                         <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
                     </li>
 
-                    
-                    
-                 <!--   
-                    <li>
-                        <a href="ui-elements.php"><i class="fa fa-desktop"></i> UI Elements</a>
-                    </li>
-					<li>
-                        <a href="chart.php"><i class="fa fa-bar-chart-o"></i> Charts</a>
-                    </li>
-                    <li>
-                        <a href="tab-panel.php"><i class="fa fa-qrcode"></i> Tabs & Panels</a>
-                    </li>
-                    
-                    <li>
-                        <a href="table.php"><i class="fa fa-table"></i> Responsive Tables</a>
-                    </li>
-                    <li>
-                        <a href="form.php"><i class="fa fa-edit"></i> Forms </a>
-                    </li>
-
-                    <li>
-                        <a href="empty.php"><i class="fa fa-fw fa-file"></i> Empty Page</a>
-                    </li> 
--->                </ul>
+                </ul>
 
             </div>
 
         </nav>
         <!-- /. NAV SIDE  -->
-        <div id="page-wrapper">
+        <div id="page-wrapper" >
             <div id="page-inner">
-				 
-					
-                    
-                <div class="row" >
+			 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            Dashboard <small>Summary of your Website</small>
+                            Manage Order<small>&nbsp;&nbsp;Manage Order Details</small>
                         </h1>
                     </div>
-                </div>
-                <div align="center">
-                		<h3 style="color:#34495e; text-align:center;"><?php echo @$_GET['logged_in']; ?></h3>
-                        <br><br>
-                		 <h1><B>WELCOME ADMIN</B></h1>
-                         <div align="center"><img src="img/logo.png"  width="300" height="200"align="center"></div>
-                </div>
-                <!-- /. ROW  -->
+                </div> 
+                 <!-- /. ROW  -->
+				 
+				
+			<div class="row">
 
-                <!--<div class="row">
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-green">
-                            <div class="panel-body">
-                                <i class="fa fa-bar-chart-o fa-5x"></i>
-                                <h3>8,457</h3>
-                            </div>
-                            <div class="panel-footer back-footer-green">
-                                Daily Visits
+			  <div class="col-md-12">
+			<div class="panel panel-default">
+							  
+							<div class="panel-body"> 
+								<table width="985px" align="center" bgcolor="pink">
+                                   	<tr align="center">
+    									<td colspan="8" bgcolor="#3498db"><h2>View All Order Details</h2><br /></td>
+    								</tr>
+    
+    								<tr align="center" bgcolor="skyblue">
+                                        <th>Order_ID</th>
+                                        <th>Customer_Email</th>
+                                        <th>Product Name</th>
+                                        <th>Totle Amount</th>
+                                    </tr>
+                                   <?php
+										include("includes/db.php");
+										include("functions/functions.php");
+										
+										$get_order = "select * from order_details";
+										
+										$run_order = mysqli_query($con,$get_order);
+										
+										$i=0;
+										}
+										while($row_order=mysqli_fetch_array($run_order))
+										{
+										
+												$Order_id = $row_order['Order_id'];
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-blue">
-                            <div class="panel-body">
-                                <i class="fa fa-shopping-cart fa-5x"></i>
-                                <h3>52,160 </h3>
-                            </div>
-                            <div class="panel-footer back-footer-blue">
-                                Sales
+												$Cus_email = $row_order['Cus_email'];
+												$i++;
+									
+								$total=0;
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-red">
-                            <div class="panel-body">
-                                <i class="fa fa fa-comments fa-5x"></i>
-                                <h3>15,823 </h3>
-                            </div>
-                            <div class="panel-footer back-footer-red">
-                                Comments
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-brown">
-                            <div class="panel-body">
-                                <i class="fa fa-users fa-5x"></i>
-                                <h3>36,752 </h3>
-                            </div>
-                            <div class="panel-footer back-footer-brown">
-                                No. of Visits
-
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-
-
-                
+								global $con;
+								
+								$ip = getIp();
+								
+								$sel_price = "select * from cart where C_id='$ip'";
+								
+								$run_price = mysqli_query($con,$sel_price);
+								
+								while($p_price=mysqli_fetch_array($run_price))
+								{
+									$pro_id = $p_price['Product_id'];
+									
+									$pro_price = "select * from product_mst where Product_id='$pro_id'";
+									
+									$run_pro_price = mysqli_query($con, $pro_price);
+									
+									while($pp_price = mysqli_fetch_array($run_pro_price))
+									{
+										$Product_price = array($pp_price['Product_price']);
+										
+										$Product_name  = $pp_price['Product_name'];
+										
+										$single_price  = $pp_price['Product_price'];
+										
+										$values = array_sum($Product_price);
+										
+										$total	= $values;	
+									}
+							?>
+                                           <tr>
+                                        <td><?php echo $i;?></td>
+                                        <td><?php echo $Cus_email;?></td>
+                                    	<td><?php echo $Product_name;?></td>    
+         							    <td><?php echo $total;?></td>              
+                                   </tr>
+                            <?php }}?>
+                                </table>	
+								<br><br>
+                                <div>
+                                    <button><a href="index.php" style="text-decoration:none; color:#000000;">Go to Home</a></button>
+                                </div>								
+								
+							</div>
+				</div>
+			</div>						
+				</div>								
+									
+				  				</div>
+             <!-- /. PAGE INNER  -->
             </div>
-            <!-- /. PAGE INNER  -->
+         <!-- /. PAGE WRAPPER  -->
         </div>
-        <!-- /. PAGE WRAPPER  -->
-    </div>
-    <!-- /. WRAPPER  -->
+     <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
     <!-- jQuery Js -->
     <script src="assets/js/jquery-1.10.2.js"></script>
-    <!-- Bootstrap Js -->
+      <!-- Bootstrap Js -->
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- Metis Menu Js -->
     <script src="assets/js/jquery.metisMenu.js"></script>
-    <!-- Morris Chart Js -->
-    <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="assets/js/morris/morris.js"></script>
-    <!-- Custom Js -->
+      <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
-
-
+ 
 </body>
-
 </html>
-<?php
-	if (isset($_GET['edit_pro']))
-	{
-		include("edit_pro.php");
-	}
-?>
-<?php } ?>
+<?php  ?>

@@ -1,36 +1,30 @@
-﻿<?php
+<?php
 	session_start();
 	
-	if(isset($_SESSION['admin_email']))
+	if(!isset($_SESSION['Admin_email']))
 	{
-		echo "<script>window.open('index.php?not_admin=You are not an Admin!','_self')</script>";
+		echo "<script>window.open('login.php?not_admin=You are not an Admin!','_self')</script>";
 	}
 	else
 	{
 ?>
 
-<?php
-include ('includes/db.php');
-?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
-    <meta charset="utf-8" />
+      <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>This is a Admin Panel</title>
-    <!-- Bootstrap Styles-->
+    <title>Product Report</title>
+	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <!-- FontAwesome Styles-->
+     <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    <!-- Morris Chart Styles-->
-    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-    <!-- Custom Styles-->
+        <!-- Custom Styles-->
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
-    <!-- Google Fonts-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+     <!-- Google Fonts-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+  
 </head>
-
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default top-navbar" role="navigation">
@@ -57,6 +51,7 @@ include ('includes/db.php');
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
+
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -68,8 +63,8 @@ include ('includes/db.php');
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 
-                    <li>
-                        <a class="active-menu" href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a>
+                   <li>
+                        <a href="index.php"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
                             <a href="#"><i class="fa fa-tags"></i> Manage Category<span class="fa arrow"></span></a>
@@ -122,7 +117,7 @@ include ('includes/db.php');
                   		</ul>
                     </li>
                     
-                   <!-- <li>
+                    <!--<li>
                         <a href="invoice.php"><i class="fa fa-envelope"></i> Manage Invoice</a>
                     </li>
 					
@@ -132,11 +127,10 @@ include ('includes/db.php');
 					
 					<!-- <li>
                         <a href="#"><i class="fa fa-flag"></i> Report Generation<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
+		  				<ul class="nav nav-second-level">
                             <li>
-                                <a href="Product_Report.php">Product Report</a>
+                                <a class="active-menu" href="Product_Report.php">Product Report</a>
                             </li>
-                           
                             <li>
                                 <a href="Customer_Report.php">Customer Report</a>
                             </li>
@@ -151,135 +145,101 @@ include ('includes/db.php');
                         <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
                     </li>
 
-                    
-                    
-                 <!--   
-                    <li>
-                        <a href="ui-elements.php"><i class="fa fa-desktop"></i> UI Elements</a>
-                    </li>
-					<li>
-                        <a href="chart.php"><i class="fa fa-bar-chart-o"></i> Charts</a>
-                    </li>
-                    <li>
-                        <a href="tab-panel.php"><i class="fa fa-qrcode"></i> Tabs & Panels</a>
-                    </li>
-                    
-                    <li>
-                        <a href="table.php"><i class="fa fa-table"></i> Responsive Tables</a>
-                    </li>
-                    <li>
-                        <a href="form.php"><i class="fa fa-edit"></i> Forms </a>
-                    </li>
-
-                    <li>
-                        <a href="empty.php"><i class="fa fa-fw fa-file"></i> Empty Page</a>
-                    </li> 
--->                </ul>
+                </ul>
 
             </div>
 
         </nav>
         <!-- /. NAV SIDE  -->
-        <div id="page-wrapper">
+        <div id="page-wrapper" >
             <div id="page-inner">
-				 
-					
-                    
-                <div class="row" >
+			 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            Dashboard <small>Summary of your Website</small>
+                            Report Generation<small>&nbsp;&nbsp;Product Report</small>
                         </h1>
                     </div>
-                </div>
-                <div align="center">
-                		<h3 style="color:#34495e; text-align:center;"><?php echo @$_GET['logged_in']; ?></h3>
-                        <br><br>
-                		 <h1><B>WELCOME ADMIN</B></h1>
-                         <div align="center"><img src="img/logo.png"  width="300" height="200"align="center"></div>
-                </div>
-                <!-- /. ROW  -->
+                </div> 
+                 <!-- /. ROW  -->
+				 
+				
+			<div class="row">
 
-                <!--<div class="row">
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-green">
-                            <div class="panel-body">
-                                <i class="fa fa-bar-chart-o fa-5x"></i>
-                                <h3>8,457</h3>
-                            </div>
-                            <div class="panel-footer back-footer-green">
-                                Daily Visits
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-blue">
-                            <div class="panel-body">
-                                <i class="fa fa-shopping-cart fa-5x"></i>
-                                <h3>52,160 </h3>
-                            </div>
-                            <div class="panel-footer back-footer-blue">
-                                Sales
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-red">
-                            <div class="panel-body">
-                                <i class="fa fa fa-comments fa-5x"></i>
-                                <h3>15,823 </h3>
-                            </div>
-                            <div class="panel-footer back-footer-red">
-                                Comments
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-brown">
-                            <div class="panel-body">
-                                <i class="fa fa-users fa-5x"></i>
-                                <h3>36,752 </h3>
-                            </div>
-                            <div class="panel-footer back-footer-brown">
-                                No. of Visits
-
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-
-
-                
+			  <div class="col-md-12">
+			<div class="panel panel-default">
+							  
+							<div class="panel-body"> 
+								<table width="990px" align="center" bgcolor="pink">
+									<tr align="center">
+    									<td colspan="10" bgcolor="#3498db"><h2>View All Products Here</h2><br /></td>
+    								</tr>
+    
+                                    <tr align="center" bgcolor="skyblue" style>
+                                        <th>S.N</th>
+                                        <th>Cat_id</th>
+                                        <th> Title</th>
+                                         <th>Part_no</th>
+                                        <th>Image</th>
+                                        <th >Size</th>
+                                        <th>Description</th>
+                                         <th >Price</th>
+									</tr>
+                                     <?php
+										include("includes/db.php");
+										$get_cat = "select * from product_mst";
+										
+										$run_cat = mysqli_query($con, $get_cat);
+										
+										$i=0;
+										
+										while($row_cat=mysqli_fetch_array($run_cat))
+										{
+										
+												$Product_id= $row_cat['Product_id'];
+												$Category_id = $row_cat['Category_id'];
+												$Product_name=$row_cat ['Product_name'];
+												$Product_partno=$row_cat['Product_partno'];
+												$Product_image=$row_cat['Product_image'];
+												$Product_size=$row_cat['Product_size'];
+												$Product_desc=$row_cat['Product_desc'];
+												$Product_price=$row_cat['Product_price'];
+												$i++;
+									?>
+									<tr>
+                                        <td><?php echo $i;?></td>
+                                        <td><?php echo $Category_id;?></td>
+                                        <td><?php echo $Product_name;?></td>
+                                        <td><?php echo $Product_partno;?></td>
+                                         <td><img src="product_images/<?php echo $Product_image;?>" width="60" height="60"/></td>
+                                          <td><?php echo $Product_size;?></td>
+                                           <td><?php echo $Product_desc;?></td>
+                                            <td><?php echo $Product_price;?></td>                                        
+                                   </tr>
+                                    <?php } ?>
+							</table>
+								<br><br>
+								<button><a href="index.php" style="text-decoration:none; color:#000000;">Go to Home</a></button>
+							</div>
+				</div>
+			</div>						
+				</div>								
+									
+				  				</div>
+             <!-- /. PAGE INNER  -->
             </div>
-            <!-- /. PAGE INNER  -->
+         <!-- /. PAGE WRAPPER  -->
         </div>
-        <!-- /. PAGE WRAPPER  -->
-    </div>
-    <!-- /. WRAPPER  -->
+     <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
     <!-- jQuery Js -->
     <script src="assets/js/jquery-1.10.2.js"></script>
-    <!-- Bootstrap Js -->
+      <!-- Bootstrap Js -->
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- Metis Menu Js -->
     <script src="assets/js/jquery.metisMenu.js"></script>
-    <!-- Morris Chart Js -->
-    <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="assets/js/morris/morris.js"></script>
-    <!-- Custom Js -->
+      <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
-
-
+ 
 </body>
-
 </html>
-<?php
-	if (isset($_GET['edit_pro']))
-	{
-		include("edit_pro.php");
-	}
-?>
-<?php } ?>
+<?php }?>
